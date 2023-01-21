@@ -9,18 +9,18 @@ const Timer = () => {
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      taskName: "Doctor Appoinment",
-      expectedTime: "3",
+      taskName: "Frontent",
+      expectedTime: "0.5",
     },
     {
       id: 2,
       taskName: "Project work",
-      expectedTime: "1",
+      expectedTime: "3",
     },
     {
       id: 3,
-      taskName: "Food shopping",
-      expectedTime: "0.5",
+      taskName: "Backend",
+      expectedTime: "5",
     },
   ]);
   const title = "Timer App";

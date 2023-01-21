@@ -8,16 +8,21 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-image: url(./assests/bg2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .container {
   max-width: 500px;
   margin: 30px auto;
+  margin-top: 120px;
   overflow: auto;
   min-height: 300px;
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
+  background-color: teal;
 }
 
 .header {

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FaTimes, FaEdit, FaPauseCircle } from "react-icons/fa";
+import { FaTimes, FaEdit, FaPauseCircle, FaPlay } from "react-icons/fa";
 import StartTimer from "./StartTimer";
 
 const TaskItem = ({ task, onDelete, editFunc }) => {
@@ -40,22 +40,21 @@ const TaskItem = ({ task, onDelete, editFunc }) => {
       </div>
       <div className="taskIcons">
         <div>
+          <FaTimes
+            onClick={() => onDelete(task.id)}
+            style={{ color: "red", cursor: "pointer" }}
+          />
+          <div onClick={() => editFunc(task.id)}>
+            <FaEdit />
+          </div>
           <div
             onClick={() => {
               console.log("passTime", passTime);
               setPassTime(!passTime);
             }}
           >
-            <FaPauseCircle />{" "}
+            {passTime?<FaPlay/>:<FaPauseCircle />}
           </div>
-          <div onClick={() => editFunc(task.id)}>
-            <FaEdit />{" "}
-          </div>
-
-          <FaTimes
-            onClick={() => onDelete(task.id)}
-            style={{ color: "red", cursor: "pointer" }}
-          />
         </div>
       </div>
     </div>

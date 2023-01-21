@@ -10,6 +10,8 @@ const AddTask = ({ onAdd, editTaskId, editTaskFunc }) => {
       return;
     }
     if (editTaskId != null) {
+      setTaskName("");
+      setExpectedTime("");
       return editTaskFunc({ taskName, expectedTime });
     }
     onAdd({ taskName, expectedTime });
