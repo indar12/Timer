@@ -21,10 +21,14 @@ const Timer = () => {
     },
   ]);
   const title = "Timer App";
+  //delete the task
+  const deleteTask = (id) =>{
+    setTasks(tasks.filter((item)=>item.id!==id))
+  }
   return (
     <div className="container">
       <Header title={title} />
-      <Tasks tasks={tasks} />
+      {tasks.length>0 ? <Tasks tasks={tasks} onDelete={deleteTask}/> :  'No Task' }
     </div>
   );
 };
