@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 
-const AddTask = ({onAdd}) => {
+const AddTask = ({ onAdd, editTaskId, editTaskFunc }) => {
   const [taskName, setTaskName] = useState("");
   const [expectedTime, setExpectedTime] = useState("");
-  const onSubmit = (e) =>{
+  const onSubmit = (e) => {
     e.preventDefault();
-    if(!taskName || !expectedTime){
-        alert("Please Enter the required fields"); 
-        return;
+    if (!taskName || !expectedTime) {
+      alert("Please Enter the required fields");
+      return;
     }
-    onAdd({taskName,expectedTime})
-    setTaskName('')
-    setExpectedTime('')
-  }
+    if (editTaskId != null) {
+      return editTaskFunc({ taskName, expectedTime });
+    }
+    onAdd({ taskName, expectedTime });
+    setTaskName("");
+    setExpectedTime("");
+  };
   return (
     <form className="add-form" onSubmit={onSubmit}>
       <div className="form-control">
@@ -37,7 +40,7 @@ const AddTask = ({onAdd}) => {
           }}
         />
       </div>
-      <input className="btn btn-block" type="submit" value="Save Task" />
+      <input className="btn btn-block" type="submit" value="Start Task" />
     </form>
   );
 };

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import AddTask from "./AddTask";
 
 const Timer = () => {
+  const [editTaskId, setEditTaskId] = useState(null);
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([
     {
@@ -33,12 +34,39 @@ const Timer = () => {
   const deleteTask = (id) => {
     setTasks(tasks.filter((item) => item.id !== id));
   };
+  function editFunc(id) {
+    console.log("id", id);
+    setEditTaskId(id);
+    setShowAddTask(true);
+  }
+  function editTaskFunc(task) {
+    setTasks(
+      tasks.map((item) => {
+        if (item.id === editTaskId) {
+          return task;
+        }
+        return item;
+      })
+    );
+  }
   return (
     <div className="container">
-      <Header title={title} onToggle={()=>{setShowAddTask(!showAddTask)}} showAddClose={showAddTask}/>
-      {showAddTask && <AddTask onAdd={addTask} />}
+      <Header
+        title={title}
+        onToggle={() => {
+          setShowAddTask(!showAddTask);
+        }}
+        showAddClose={showAddTask}
+      />
+      {showAddTask && (
+        <AddTask
+          onAdd={addTask}
+          editTaskId={editTaskId}
+          editTaskFunc={editTaskFunc}
+        />
+      )}
       {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={deleteTask} />
+        <Tasks tasks={tasks} onDelete={deleteTask} editFunc={editFunc} />
       ) : (
         "No Task"
       )}
